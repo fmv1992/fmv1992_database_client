@@ -1,28 +1,59 @@
+% {application, fmv1992_database_client, [
+%     {description, "An OTP library"},
+%     {vsn, "0.1.0"},
+%     {registered, [fmv1992_database_client]},
+%     {mod, {fmv1992_database_client, []}},
+%     {applications, [
+%         kernel,
+%         stdlib
+%     ]},
+%     {modules, [fmv1992_database_client,example, example_worker]},
+%     {licenses, ["Apache 2.0"]},
+%     {links, []},
+%     % Poolboy configuration (<https://github.com/devinus/poolboy#exampleapp>).
+%     {env, [
+%         {pools, [
+%             {pool1,
+%                 [
+%                     {size, 5},
+%                     {max_overflow, 20}
+%                 ],
+%                 [
+%                     {hostname, "localhost"},
+%                     {database, "fmv1992_database"},
+%                     {username, "fmv1992_database_user"},
+%                     {password, "password_fmv1992_database_postgres"}
+%                 ]}
+%         ]}
+%     ]}
+% ]}.
 {application, fmv1992_database_client, [
-    {description, "An OTP library"},
-    {vsn, "0.1.0"},
-    {registered, [example]},
-    {applications, [
-        kernel,
-        stdlib
-    ]},
+    {description, "An example application"},
+    {vsn, "0.1"},
+    {applications, [kernel, stdlib, sasl, crypto, ssl]},
     {modules, [example, example_worker]},
-    {licenses, ["Apache 2.0"]},
-    {links, []},
-    % Poolboy configuration.
+    {registered, [example]},
+    {mod, {example, []}},
     {env, [
         {pools, [
-            {pool1,
-                [
-                    {size, 5},
-                    {max_overflow, 20}
-                ],
-                [
-                    {hostname, "localhost"},
-                    {database, "fmv1992_database"},
-                    {username, "fmv1992_database_user"},
-                    {password, "password_fmv1992_database_postgres"}
-                ]}
+            {pool1, [
+                {size, 10},
+                {max_overflow, 20}
+			], [
+                {hostname, "127.0.0.1"},
+                {database, "db1"},
+                {username, "db1"},
+                {password, "abc123"}
+            ]},
+            {pool2, [
+                {size, 5},
+                {max_overflow, 10}
+			], [
+                {hostname, "127.0.0.1"},
+                {database, "db2"},
+                {username, "db2"},
+                {password, "abc123"}
+            ]}
         ]}
     ]}
 ]}.
