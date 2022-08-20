@@ -8,6 +8,7 @@
 !*.ex
 !.gitignore
 !.gitkeep
+!*.lock
 !makefile
 !*.md
 !*.properties
