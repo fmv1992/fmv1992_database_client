@@ -46,11 +46,5 @@ equery(PoolName, Stmt, Params) ->
 main() ->
     Pid1 = example:start(),
     Specs = example:init([]),
-    % Pool1 = proplists:get_value(pool1, Pools),
-    {ok, Pools} = application:get_env(example, pools),
-    % ArgsWorker = lists:nth(2, hd(hd(Pools))),
-    ArgsWorker = element(3, hd(Pools)),
-    Worker = example_worker:start_link(ArgsWorker),
-    % erlang:throw(io_lib:format("~p", [ArgsWorker])),
-    % example_worker:start_link().
-    io_lib:format("~p", [example:squery(pool1, "SELECT 1 as x;")]).
+    io_lib:format("~p", [example:squery("pool1", "SELECT 1 as x;")]),
+    timer:sleep(1000).
