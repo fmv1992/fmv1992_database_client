@@ -4,7 +4,7 @@
 
 -export([start/0, stop/0, squery/2, equery/3]).
 -export([start/2, stop/1]).
--export([init/1]).
+-export([init/1, main/0]).
 
 start() ->
     application:start(?MODULE).
@@ -19,8 +19,8 @@ stop(_State) ->
     ok.
 
 init([]) ->
-    erlang:throw(io_lib:format("~p", [application:get_all_env()])),
-    {ok, Pools} = application:get_env(fmv1992_database_client, pools),
+    % erlang:throw(io_lib:format("~p", [application:get_all_env(examplx)])),
+    {ok, Pools} = application:get_env(example, pools),
     PoolSpecs = lists:map(
         fun({Name, SizeArgs, WorkerArgs}) ->
             PoolArgs =
@@ -43,3 +43,7 @@ equery(PoolName, Stmt, Params) ->
     poolboy:transaction(PoolName, fun(Worker) ->
         gen_server:call(Worker, {equery, Stmt, Params})
     end).
+
+main() ->
+    example:init([]),
+    io_lib:format("~p", [example:squery(pool1, "SELECT 1 as x;")]).
