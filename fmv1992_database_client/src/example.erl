@@ -44,12 +44,10 @@ equery(PoolName, Stmt, Params) ->
     end).
 
 main() ->
-    % example:start(),
-    % example:init([]),
-    Worker = poolboy:checkout(pool1),
-gen_server:call(Worker, "SELECT 1;"),
-poolboy:checkin(pool1, Worker).
-    % example:start(),
-    % example:init([]),
-    % example_worker:init([]),
-    % io_lib:format("~p", [example:squery(pool1, "SELECT 1 as x;")]).
+    Pid1 = example:start(),
+    Specs = example:init([]),
+    % Pool1 = proplists:get_value(pool1, Pools),
+    % {ok, Pools} = application:get_env(example, pools),
+    erlang:throw(io_lib:format("~p", [Specs])),
+    % example_worker:start_link().
+    io_lib:format("~p", [example:squery(pool1, "SELECT 1 as x;")]).
