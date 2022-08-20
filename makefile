@@ -4,9 +4,12 @@ export SHELL := /bin/bash -euo pipefail
 
 ERL_FILES := $(sort $(shell find . -iname '*.erl' -o -iname '*.hrl' | grep --invert-match -E '_build'))
 
-PROJECT := fmv1992_erlang_project_template
+PROJECT := $(notdir $(ROOT_DIR))
 
 all: format test
+
+echo:
+	echo $(PROJECT)
 
 format:
 	cd ./$(PROJECT) && make format

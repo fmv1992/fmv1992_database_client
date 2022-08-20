@@ -1,4 +1,4 @@
-fmv1992_erlang_project_template_lib
+fmv1992_database_client
 =====
 
 An OTP library

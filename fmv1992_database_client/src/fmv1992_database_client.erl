@@ -1,3 +1,3 @@
--module(fmv1992_erlang_project_template_lib).
+-module(fmv1992_database_client).
 
 -export([]).
