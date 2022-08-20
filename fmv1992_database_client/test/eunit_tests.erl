@@ -5,3 +5,9 @@
 -include_lib("eunit/include/eunit.hrl").
 
 reverse_test() -> lists:reverse([1, 2, 3]).
+
+poolboy_test() ->
+    ?assertEqual(
+        1,
+        fmv1992_database_client:main()
+    ).

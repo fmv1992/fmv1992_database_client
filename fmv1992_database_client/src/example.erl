@@ -19,7 +19,8 @@ stop(_State) ->
     ok.
 
 init([]) ->
-    {ok, Pools} = application:get_env(example, pools),
+    erlang:throw(io_lib:format("~p", [application:get_all_env()])),
+    {ok, Pools} = application:get_env(fmv1992_database_client, pools),
     PoolSpecs = lists:map(
         fun({Name, SizeArgs, WorkerArgs}) ->
             PoolArgs =
