@@ -1,0 +1,39 @@
+# Ignore everything
+*
+
+# But not these files...
+!*.config
+!dockerfile
+!*.erl
+!*.ex
+!.gitignore
+!.gitkeep
+!makefile
+!*.md
+!*.properties
+!.properties
+!*.py
+!*.sbt
+!.sbt
+!*.scala
+!*.sh
+!*.src
+# !*.txt
+!*.vim
+# Git files.
+!post-checkout
+!pre-commit
+!prepare-commit-msg
+# etc...
+
+# ...even if they are in subdirectories
+!*/
+
+# But do ignore these directories
+_build/
+.metals/
+project/
+target/
+tmp/
+
+# vim: set fileformat=unix filetype=conf wrap :
