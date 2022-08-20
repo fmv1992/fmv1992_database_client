@@ -19,7 +19,9 @@ stop(_State) ->
     ok.
 
 init([]) ->
-    % erlang:throw(io_lib:format("~p", [application:get_all_env(examplx)])),
+    start(),
+    % io:format(standard_error, "~p~n", [application:get_env(example, pools)]),
+    erlang:throw(io_lib:format("~p", [application:get_env(example, pools)])),
     {ok, Pools} = application:get_env(example, pools),
     PoolSpecs = lists:map(
         fun({Name, SizeArgs, WorkerArgs}) ->
