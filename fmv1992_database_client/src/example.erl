@@ -19,9 +19,6 @@ stop(_State) ->
     ok.
 
 init([]) ->
-    start(),
-    % io:format(standard_error, "~p~n", [application:get_env(example, pools)]),
-    erlang:throw(io_lib:format("~p", [application:get_env(example, pools)])),
     {ok, Pools} = application:get_env(example, pools),
     PoolSpecs = lists:map(
         fun({Name, SizeArgs, WorkerArgs}) ->
@@ -47,5 +44,12 @@ equery(PoolName, Stmt, Params) ->
     end).
 
 main() ->
-    example:init([]),
-    io_lib:format("~p", [example:squery(pool1, "SELECT 1 as x;")]).
+    % example:start(),
+    % example:init([]),
+    Worker = poolboy:checkout(pool1),
+gen_server:call(Worker, "SELECT 1;"),
+poolboy:checkin(pool1, Worker).
+    % example:start(),
+    % example:init([]),
+    % example_worker:init([]),
+    % io_lib:format("~p", [example:squery(pool1, "SELECT 1 as x;")]).

@@ -45,9 +45,10 @@
                 ],
                 [
                     {hostname, "127.0.0.1"},
-                    {database, "db1"},
-                    {username, "db1"},
-                    {password, "abc123"}
+                    {database, "fmv1992_database"},
+                    {username, "fmv1992_database_user"},
+                    {password, "password_fmv1992_database_postgres"},
+                    {port, 5999}
                 ]},
             {pool2,
                 [

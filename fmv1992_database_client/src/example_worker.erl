@@ -23,12 +23,14 @@ init(Args) ->
     Database = proplists:get_value(database, Args),
     Username = proplists:get_value(username, Args),
     Password = proplists:get_value(password, Args),
+    Port = proplists:get_value(port, Args),
     {ok, Conn} = epgsql:connect(Hostname, Username, Password, [
-        {database, Database}
+        {database, Database}, {port, Port}
     ]),
     {ok, #state{conn = Conn}}.
 
 handle_call({squery, Sql}, _From, #state{conn = Conn} = State) ->
+    io:format(standard_error, "~p~n", ['SQUERY']),
     {reply, epgsql:squery(Conn, Sql), State};
 handle_call({equery, Stmt, Params}, _From, #state{conn = Conn} = State) ->
     {reply, epgsql:equery(Conn, Stmt, Params), State};
