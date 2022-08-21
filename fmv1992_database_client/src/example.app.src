@@ -49,17 +49,6 @@
                     {username, "fmv1992_database_user"},
                     {password, "password_fmv1992_database_postgres"},
                     {port, 5999}
-                ]},
-            {pool2,
-                [
-                    {size, 5},
-                    {max_overflow, 10}
-                ],
-                [
-                    {hostname, "127.0.0.1"},
-                    {database, "db2"},
-                    {username, "db2"},
-                    {password, "abc123"}
                 ]}
         ]}
     ]}
