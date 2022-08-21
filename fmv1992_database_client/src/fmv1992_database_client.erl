@@ -25,7 +25,7 @@ init([]) ->
             PoolArgs =
                 [
                     {name, {local, Name}},
-                    {worker_module, example_worker}
+                    {worker_module, fmv1992_database_client_worker}
                 ] ++ SizeArgs,
             poolboy:child_spec(Name, PoolArgs, WorkerArgs)
         end,

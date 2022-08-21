@@ -1,4 +1,4 @@
--module(example_worker).
+-module(fmv1992_database_client_worker).
 -behaviour(gen_server).
 -behaviour(poolboy_worker).
 
