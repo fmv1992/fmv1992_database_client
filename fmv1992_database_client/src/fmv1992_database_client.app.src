@@ -29,13 +29,27 @@
 %         ]}
 %     ]}
 % ]}.
-{application, example, [
+{application, fmv1992_database_client, [
     {description, "An example application"},
     {vsn, "0.1"},
-    {applications, [kernel, stdlib, sasl, crypto, ssl, example]},
-    {modules, [example, example_worker]},
-    {registered, [example]},
-    {mod, {example, []}},
+    {applications, [
+        kernel,
+        stdlib,
+        sasl,
+        crypto,
+        ssl
+        %
+    ]},
+    {modules, [
+        % example,
+        example_worker
+    ]},
+    {registered, [
+        % example
+    ]},
+    % {mod, {
+    % % example
+    % , []}},
     {env, [
         {pools, [
             {pool1,

@@ -23,10 +23,10 @@ check_that_the_db_is_working() ->
 poolboy_test() ->
     check_that_the_db_is_working(),
     % Start the application.
-    Pid1 = example:start(),
+    Pid1 = fmv1992_database_client:start(),
     % Start the supervisor. This will also call `init'.
-    Pid2 = example:start([], []),
-    {ok, [_Column], Data} = example:equery(
+    Pid2 = fmv1992_database_client:start([], []),
+    {ok, [_Column], Data} = fmv1992_database_client:equery(
         pool1, "SELECT 'POOLBOY!' as x;", []
     ),
     ?assertEqual(
