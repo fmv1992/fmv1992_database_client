@@ -15,7 +15,6 @@
 -record(state, {conn}).
 
 start_link(Args) ->
-    io:format(standard_error, "~p~n", [Args]),
     gen_server:start_link(?MODULE, Args, []).
 
 init(Args) ->
@@ -31,7 +30,6 @@ init(Args) ->
     {ok, #state{conn = Conn}}.
 
 handle_call({squery, Sql}, _From, #state{conn = Conn} = State) ->
-    io:format(standard_error, "~p~n", ['SQUERY']),
     {reply, epgsql:squery(Conn, Sql), State};
 handle_call({equery, Stmt, Params}, _From, #state{conn = Conn} = State) ->
     {reply, epgsql:equery(Conn, Stmt, Params), State};

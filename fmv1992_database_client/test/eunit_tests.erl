@@ -26,7 +26,9 @@ poolboy_test() ->
     Pid1 = example:start(),
     % Start the supervisor. This will also call `init'.
     Pid2 = example:start([], []),
-    {ok, [_Column], Data} = example:equery(pool1, "SELECT 'POOLBOY!' as x;", []),
+    {ok, [_Column], Data} = example:equery(
+        pool1, "SELECT 'POOLBOY!' as x;", []
+    ),
     ?assertEqual(
         [{<<"POOLBOY!">>}],
         Data

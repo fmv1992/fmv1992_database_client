@@ -4,7 +4,7 @@
 
 -export([start/0, stop/0, squery/2, equery/3]).
 -export([start/2, stop/1]).
--export([init/1, main/0]).
+-export([init/1]).
 
 start() ->
     application:start(?MODULE).
@@ -42,21 +42,3 @@ equery(PoolName, Stmt, Params) ->
     poolboy:transaction(PoolName, fun(Worker) ->
         gen_server:call(Worker, {equery, Stmt, Params})
     end).
-
-main() ->
-    % See if the database is working with plain `epgsql':
-    {ok, C} = epgsql:connect(#{
-        host => "localhost",
-        username => "fmv1992_database_user",
-        password => "password_fmv1992_database_postgres",
-        database => "fmv1992_database",
-        port => 5999,
-        timeout => 4000
-    }),
-    {ok, _Z, __Z} = epgsql:squery(C, "SELECT 'epgsql...';"),
-    % Start to trigger `application:start(?MODULE).' This will allow `get_env'
-    % to not return `undefined'.
-    Pid1 = example:start(),
-    % Start the supervisor. This will also call `init'.
-    Pid2 = example:start([], []),
-    io_lib:format("~p", [example:squery(pool1, "SELECT 'POOLBOY!' as x;")]).
