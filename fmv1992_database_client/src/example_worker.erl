@@ -31,7 +31,6 @@ init(Args) ->
     {ok, #state{conn = Conn}}.
 
 handle_call({squery, Sql}, _From, #state{conn = Conn} = State) ->
-    erlang:throw(io_lib:format("~p", [c])),
     io:format(standard_error, "~p~n", ['SQUERY']),
     {reply, epgsql:squery(Conn, Sql), State};
 handle_call({equery, Stmt, Params}, _From, #state{conn = Conn} = State) ->

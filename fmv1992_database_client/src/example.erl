@@ -19,9 +19,8 @@ stop(_State) ->
     ok.
 
 init([]) ->
-    erlang:throw(io_lib:format("~p", [x])),
     {ok, Pools} = application:get_env(example, pools),
-    erlang:throw(io_lib:format("~ts", [Pools])),
+    % erlang:throw(io_lib:format("~ts", [Pools])),
     PoolSpecs = lists:map(
         fun({Name, SizeArgs, WorkerArgs}) ->
             PoolArgs =
@@ -58,5 +57,6 @@ main() ->
     {ok, _Z, __Z} = epgsql:squery(C, "SELECT 'epgsql...';"),
     %
     Pid1 = example:start(),
+    Pid2 = example:start([], []),
     % Specs = example:init([]),
     io_lib:format("~p", [example:squery(pool1, "SELECT 'POOLBOY!' as x;")]).
