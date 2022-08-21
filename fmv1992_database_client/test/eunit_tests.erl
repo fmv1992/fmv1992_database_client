@@ -33,3 +33,7 @@ poolboy_test() ->
         [{<<"POOLBOY!">>}],
         Data
     ).
+
+% ???: "One remaining advantage of the large object facility is that it allows
+% values up to 4 TB in size, whereas TOASTed fields can be at most 1 GB."
+% <https://www.postgresql.org/docs/14/lo-intro.html>.

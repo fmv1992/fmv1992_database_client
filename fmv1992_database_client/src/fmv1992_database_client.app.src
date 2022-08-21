@@ -1,36 +1,6 @@
 % "What is the difference between .app and .app.src files in Erlang?": <https://stackoverflow.com/questions/30915658/what-is-the-difference-between-app-and-app-src-files-in-erlang>.
-
-% {application, fmv1992_database_client, [
-%     {description, "An OTP library"},
-%     {vsn, "0.1.0"},
-%     {registered, [fmv1992_database_client]},
-%     {mod, {fmv1992_database_client, []}},
-%     {applications, [
-%         kernel,
-%         stdlib
-%     ]},
-%     {modules, [fmv1992_database_client,example, example_worker]},
-%     {licenses, ["Apache 2.0"]},
-%     {links, []},
-%     % Poolboy configuration (<https://github.com/devinus/poolboy#exampleapp>).
-%     {env, [
-%         {pools, [
-%             {pool1,
-%                 [
-%                     {size, 5},
-%                     {max_overflow, 20}
-%                 ],
-%                 [
-%                     {hostname, "localhost"},
-%                     {database, "fmv1992_database"},
-%                     {username, "fmv1992_database_user"},
-%                     {password, "password_fmv1992_database_postgres"}
-%                 ]}
-%         ]}
-%     ]}
-% ]}.
 {application, fmv1992_database_client, [
-    {description, "An example application"},
+    {description, "A client for the `fmv1992_database` project."},
     {vsn, "0.1"},
     {applications, [
         kernel,
@@ -40,13 +10,8 @@
         ssl
         %
     ]},
-    {modules, [
-        % example,
-        % example_worker
-    ]},
-    {registered, [
-        % example
-    ]},
+    {modules, []},
+    {registered, []},
     % {mod, {
     % % example
     % , []}},
