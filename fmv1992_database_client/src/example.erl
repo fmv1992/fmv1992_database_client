@@ -20,7 +20,6 @@ stop(_State) ->
 
 init([]) ->
     {ok, Pools} = application:get_env(example, pools),
-    % erlang:throw(io_lib:format("~ts", [Pools])),
     PoolSpecs = lists:map(
         fun({Name, SizeArgs, WorkerArgs}) ->
             PoolArgs =
@@ -45,7 +44,7 @@ equery(PoolName, Stmt, Params) ->
     end).
 
 main() ->
-    % See if the database is working:
+    % See if the database is working with plain `epgsql':
     {ok, C} = epgsql:connect(#{
         host => "localhost",
         username => "fmv1992_database_user",
@@ -55,8 +54,9 @@ main() ->
         timeout => 4000
     }),
     {ok, _Z, __Z} = epgsql:squery(C, "SELECT 'epgsql...';"),
-    %
+    % Start to trigger `application:start(?MODULE).' This will allow `get_env'
+    % to not return `undefined'.
     Pid1 = example:start(),
+    % Start the supervisor. This will also call `init'.
     Pid2 = example:start([], []),
-    % Specs = example:init([]),
     io_lib:format("~p", [example:squery(pool1, "SELECT 'POOLBOY!' as x;")]).
