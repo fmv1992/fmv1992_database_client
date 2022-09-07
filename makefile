@@ -8,8 +8,8 @@ PROJECT := $(notdir $(ROOT_DIR))
 
 all: format test
 
-echo:
-	echo $(PROJECT)
+dev:
+	cp ./other/git/hooks/* ./.git/hooks/
 
 format:
 	cd ./$(PROJECT) && make format

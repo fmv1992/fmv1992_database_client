@@ -51,6 +51,9 @@ doc: ./doc/index.html
 doc/index.html: $(SOURCES) ./doc/overview.edoc
 	$(EDOC_BINARY) -files $(SOURCES) -I $(HOME)/bin/erlang -o doc
 
+lock:
+	rebar3 lock
+
 # ???: `dialyzer` is missing.DIALYZER_FLAGS
 # See `fmv1992_erlang_id3_tags:077c43f:fmv1992_erlang_id3_tags/makefile:39` for
 # details.
