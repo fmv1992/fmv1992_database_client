@@ -24,6 +24,10 @@ test:
         && rebar3 proper \
         && rebar3 eunit
 
+shell:
+	cd ./$(PROJECT)/ \
+        && rebar3 shell
+
 clean:
 ifeq ($(PROJECT), fmv1992_erlang_project_template)
 	comm -2 -3 \

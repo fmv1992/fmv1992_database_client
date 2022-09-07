@@ -1,14 +1,34 @@
+% "What is the difference between .app and .app.src files in Erlang?": <https://stackoverflow.com/questions/30915658/what-is-the-difference-between-app-and-app-src-files-in-erlang>.
 {application, fmv1992_database_client, [
-    {description, "An OTP library"},
-    {vsn, "0.1.0"},
-    {registered, []},
+    {description, "A client for the `fmv1992_database` project."},
+    {vsn, "0.1"},
     {applications, [
         kernel,
-        stdlib
+        stdlib,
+        sasl,
+        crypto,
+        ssl
+        %
     ]},
-    {env, []},
     {modules, []},
-
-    {licenses, ["Apache 2.0"]},
-    {links, []}
+    {registered, []},
+    % {mod, {
+    % % example
+    % , []}},
+    {env, [
+        {pools, [
+            {pool1,
+                [
+                    {size, 10},
+                    {max_overflow, 20}
+                ],
+                [
+                    {hostname, "127.0.0.1"},
+                    {database, "fmv1992_database"},
+                    {username, "fmv1992_database_user"},
+                    {password, "password_fmv1992_database_postgres"},
+                    {port, 5999}
+                ]}
+        ]}
+    ]}
 ]}.

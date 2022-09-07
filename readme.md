@@ -1,30 +1,42 @@
-# `fmv1992`'s `erlang` project template
+# `fmv1992_database_client`
 
-## How to use this project
+A client for the [`fmv1992_database`](https://github.com/fmv1992/fmv1992_database) project.
 
-1.  Start a new project at the desired location with:
+High level actions:
+
+*   Backup: backup a folder recursively.
+
+    *   Maybe using an interactive option alongside a batch option is a good idea, cf. `fmv1992_blobs_put_file_interactive`.
+
+    *   Special considerations:
+
+        *   Git folders should be backed up in a special way. We shall not backup on a file-by-file basis.
+
+*   Restore a folder.
+
+    *   For ease of use a special file format should be used. See [`my_publications`](https://github.com/fmv1992/my_publications/blob/9fc8f9b1c9e1ac33869c7efa28748cbbe9f1290f/index.csv#L1) for a possible file format.
+
+    *   Behavior:
+
+        *   Overwrite flag.
+
+        *   Zap flag: should we remove everything that is defined in that folder that is not part of the "index" file?
+
+*   Delete files from the database.
+
+    *   For simplicity a file api should be used. Perhaps a single list of IDs should do the trick.
+
+* * *
+
+*   Usual commands:
 
     ```
-    rebar3 new help app
-
-    rebar3 new app \
-        name="mylib" \
-        desc="An OTP application" \
-        author_name="Felipe M. Vieira" \
-        author_email="fmv1992@gmail.com" \
-        apps_dir="apps"
+    make --directory "$(get_project_path fmv1992_database)" -- docker_up
+    make --directory "$(get_project_path fmv1992_database_client)" -- test
     ```
 
-1.  Copy/paste files from this into that project to benefit from tested patterns.
+## APIs
 
-    Make sure to come back and improve those over time.
-
-## TODO
-
-*   Add `typer` support.
-
-̶*̶̶   ̶H̶̶̶o̶̶̶w̶̶ ̶d̶̶̶o̶̶̶e̶̶̶s̶̶ ̶o̶̶̶n̶̶̶e̶̶ ̶u̶̶̶s̶̶̶e̶̶ ̶t̶̶̶h̶̶̶i̶̶̶s̶̶̶?̶̶
-
-̶*̶̶   ̶H̶̶̶o̶̶̶w̶̶ ̶d̶̶̶o̶̶̶e̶̶̶s̶̶ ̶o̶̶̶n̶̶̶e̶̶ ̶c̶̶̶r̶̶̶e̶̶̶a̶̶̶t̶̶̶e̶̶ ̶a̶̶ ̶p̶̶̶r̶̶̶o̶̶̶j̶̶̶e̶̶̶c̶̶̶t̶̶̶?̶̶
+### General
 
 <!-- vim: set filetype=pandoc fileformat=unix nowrap spell spelllang=en:  -->
